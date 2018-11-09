@@ -33,7 +33,7 @@ var propTypes = {
 };
 
 var defaultProps = {
-  id: 'button-download-as-xls',
+  id: 'button-download-as-xlsx',
   className: 'button-download',
   buttonText: 'Download'
 };
