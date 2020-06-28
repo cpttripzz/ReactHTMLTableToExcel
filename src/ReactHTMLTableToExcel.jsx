@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 const propTypes = {
   table: PropTypes.string.isRequired,
+  tableClass: PropTypes.string.isRequired,
   filename: PropTypes.string.isRequired,
   sheet: PropTypes.string.isRequired,
   id: PropTypes.string,
@@ -40,15 +41,13 @@ class ReactHTMLTableToExcel extends Component {
       return null;
     }
 
-    if (document.getElementById(this.props.table).nodeType !== 1 || document.getElementById(this.props.table).nodeName !== 'TABLE') {
-      if (process.env.NODE_ENV !== 'production') {
-        console.error('Provided table property is not html table element');
-      }
 
-      return null;
+    let table;
+    if (this.props.tableClass){
+      table = document.getElementsByClassName(this.props.tableClass)[0];
+    } else {
+      table = document.getElementById(this.props.table).outerHTML;
     }
-
-    const table = document.getElementById(this.props.table).outerHTML;
     const sheet = String(this.props.sheet);
     const filename = `${String(this.props.filename)}.xls`;
 
